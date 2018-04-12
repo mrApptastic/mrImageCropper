@@ -1,28 +1,14 @@
-var mrImageCropper = function(element, settings) {
+var mrImageCropper = function(element, width = 300, height = 150, drawingTools = true, filters = true, toolsHidden = false, downloadButton = true, uploadEvent = "", language = "en-uk") {
 	var mr = this;
 	mr.elem = document.getElementById(element);
-	mr.set = {
-				"wgt" : settings ? (settings.width != null ? settings.width : 300) : 300,
-				"hgt" : settings ? (settings.height != null ? settings.height : 150) : 150,
-                "drw" : settings ? (settings.drawingTools != null ? settings.drawingTools : true) : true,
-                "flt" : settings ? (settings.filters != null ? settings.filters : true) : true,
-				"tls" : settings ? (settings.toolsHidden != null ? settings.toolsHidden : false) : false,
-				"dlb" : settings ? (settings.downloadButton != null ? settings.downloadButton : true) : true,
-				"uev" : settings ? (settings.uploadEvent != null ? settings.uploadEvent : "") : "",
-				"lan" : window.navigator.language.indexOf("da") != -1
-			  };
-			  // width = 300, height = 150, drawingTools = true, filters = true, toolsHidden = false, downloadButton = true, uploadEvent = "", language = "en-uk"
 	mr.init = function () {
 	/* Create Elements */
 		/* Create Image Zone */
-		var imageZone = document.createElement("div");
-		imageZone.setAttribute("id","imageZone");
-		mr.elem.appendChild(imageZone);
-
-		mr.imzn = document.getElementById("imageZone");
+		mr.elem.appendChild(document.createElement("div"));
+		mr.elem.getElementsByTagName("div")[0].className = "imageZone";
+		mr.imzn = mr.elem.getElementsByClassName("imageZone")[0];
 		/* Create Hide Checkbox Placeholder */
-		var document.createElement("div")
-		mr.elem.appendChild();
+		mr.elem.appendChild(document.createElement("div"));
 		mr.elem.getElementsByTagName("div")[1].className = "textBandit";
 		mr.txtb = mr.elem.getElementsByClassName("textBandit")[0];		
 		mr.txtb.style.cssText = "right:0;top:0;position:fixed;z-index: 999; color: #777;";
@@ -31,7 +17,7 @@ var mrImageCropper = function(element, settings) {
 		mr.elem.getElementsByTagName("div")[2].className = "editField";
 		mr.edit = mr.elem.getElementsByClassName("editField")[0];
 		mr.edit.style.cssText = "border-radius: 5px; background: rgba(133,133,123,0.9); width: 350px; padding: 10px; top: 0; right:0; height: 100%; position:fixed; z-index: 998; transition: 0.1s;	background: rgba(133,133,123,0.9); width: 350px; padding: 10px; top: 0; right:0; height: 100%; position:fixed; z-index: 998; transition: 0.1s;";
-		mr.edit.style.display = mr.set.tls ? "none" : "block";
+		mr.edit.style.display = toolsHidden ? "none" : "block";
 		/* Inside Image Zone */
 			/* Create Drawing Canvas */
 			mr.imzn.appendChild(document.createElement("canvas"));
